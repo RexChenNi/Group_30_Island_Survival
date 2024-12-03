@@ -54,9 +54,6 @@ private:
 
     void delete_list(Node*& head);
 
-    extern map<string, int> bag;
-    extern vector<string> blueprints;
-    extern string weather;
 };
 
 #endif
