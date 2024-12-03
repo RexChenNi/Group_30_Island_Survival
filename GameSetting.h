@@ -48,7 +48,10 @@ private:
     map<string, int> bag;
     vector<string> blueprints;
     string weather;
-    
+    struct Node{
+        string name;
+        Node* next;
+};
 
     void delete_list(Node*& head);
   
