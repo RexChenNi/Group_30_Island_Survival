@@ -20,11 +20,11 @@ Application description
 #Key Actions & Features:
   1. Exploration: Random evetns, such as animal attacks or discovering valuable blueprints, add unpredictability. Players can gather materials and ingredients during exploration.
 
-a. Probability of encountering a cave: 20% chance - given a choice of entering or not (70% chance of losing health; 90% chance of finding a blueprint; 10% chance of nothing happen)
+  a. Probability of encountering a cave: 20% chance - given a choice of entering or not (70% chance of losing health; 90% chance of finding a blueprint; 10% chance of nothing happen)
 
-b. Probability of animal attack: 20% chance - causing 40 HP deduction
+  b. Probability of animal attack: 20% chance - causing 40 HP deduction
 
-c. Blueprint types: gun_bullet, signal_flare, armor
+  c. Blueprint types: gun_bullet, signal_flare, armor
 
   2. Cooking: Players can prepare food to replenish the hunger bar. (The player cannot cook without campfire, player can cook 2 dishes in this step)
 
@@ -40,15 +40,15 @@ c. Blueprint types: gun_bullet, signal_flare, armor
 
   8. Random Night Events & Extreme Weather Conditions:
 
-a. Wild animal attack: 20% chance - damage depending on the shielding effect of tools owned
+  a. Wild animal attack: 20% chance - damage depending on the shielding effect of tools owned
 
-b. Poor sleeping quality: 20% chance - causing 15 mental deduction
+  b. Poor sleeping quality: 20% chance - causing 15 mental deduction
 
-c. Extreme rainfall: 10% chance - causing 15 Hunger deduction and 5 mental deduction
+  c. Extreme rainfall: 10% chance - causing 15 Hunger deduction and 5 mental deduction
 
-d. Extreme Cold: 10% chance - causing 20 Hunger deduction and 5 mental deduction
+  d. Extreme Cold: 10% chance - causing 20 Hunger deduction and 5 mental deduction
 
-e. Extreme Hot: 10% chance - causing 15 Hunger deduction and 10 mental deduction
+  e. Extreme Hot: 10% chance - causing 15 Hunger deduction and 10 mental deduction
 
 #Win Conditions:
   To win, players must:
