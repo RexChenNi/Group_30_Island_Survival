@@ -7,6 +7,59 @@
 
 using namespace std;
 
+// GameSetting.cpp
+#include "GameSetting.h"
+#include <iostream>
+#include <iomanip>
+#include <cstdlib>
+#include <ctime>
+#include <algorithm> // For std::max and std::min
+
+using namespace std;
+
+// Initialize the game with default settings
+void GameSetting::initialize_game() {
+    day = 1;
+    setHP(100);
+    setHunger(100);
+    setMental(100);
+    weather = "sunny";
+    cout << "Game initialized!" << endl;
+}
+
+// Getter and Setter methods definitions
+int GameSetting::getHP() const {
+    return HP;
+}
+
+void GameSetting::setHP(int value) {
+    HP = value;
+}
+
+int GameSetting::getHunger() const {
+    return Hunger;
+}
+
+void GameSetting::setHunger(int value) {
+    Hunger = value;
+}
+
+int GameSetting::getMental() const {
+    return Mental;
+}
+
+void GameSetting::setMental(int value) {
+    Mental = value;
+}
+
+int GameSetting::getBagItem(const string& item) const {
+    auto it = bag.find(item);
+    if (it != bag.end()) {
+        return it->second;
+    }
+    return 0; // Return 0 if the item is not found
+}
+
 // Initializes the game with default settings
 void GameSetting::initialize_game() {
     day = 1;               // Set the day counter to 1
