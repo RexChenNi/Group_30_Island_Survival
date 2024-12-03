@@ -12,7 +12,7 @@ void SurvivalLog::openFile(Game_setting& game) {
     }
 }
 
-void SurvivalLog::writeFile(Game_setting& game, std::string data) {
+void SurvivalLog::writeFile(Game_setting& game, string data) {
     if (game.outFile.is_open()) {
         game.outFile << data << endl;
     }
@@ -21,7 +21,7 @@ void SurvivalLog::writeFile(Game_setting& game, std::string data) {
     }
 }
 
-void SurvivalLog::appendToFile(Game_setting& game, std::string text) {
+void SurvivalLog::appendToFile(Game_setting& game, string text) {
     ofstream outFile("Survival Log", ios::app);
     if (!outFile) {
         cerr << "Error opening file for appending!" << endl;
