@@ -71,8 +71,8 @@ Compilation and Execution Instructions
 
   1. Open a Linux OS in your computer and connect to the Linux server
   2. Enter the command: git clone https://github.com/RexChenNi/Survival-Game.git
-  3. Check in SFTP to see if the repository has successfully cloned into your own directory
-  4. Enter the command: cd Survival-game (changes the current directory to 2113)
+  3. Check in SFTP to see if the repository has been successfully cloned into your own directory
+  4. Enter the command: cd Survival-Game (changes the current directory to Survival-Game)
   5. Enter the command: make
 
     g++ -c Main.cpp
@@ -83,4 +83,4 @@ Compilation and Execution Instructions
   6. Compilation succeeds (shown above)
   7. Enter the command: ./main
   8. Once you see "Game initialized!", you can start playing based on the game instructions provided.
-  9. Enjoy your game :)
+  9. Enjoy your game and Hope you survive :)
