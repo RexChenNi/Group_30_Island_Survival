@@ -154,10 +154,6 @@ void GameSetting::perform_action() {
     perform_action(); // Start the next day's actions
 }
 
-struct Node {
-    string name;
-    Node* next;
-};
 
 // Deletes the linked list of blueprints
 void GameSetting::delete_list(Node*& head) {
