@@ -1,5 +1,5 @@
 #include "GameSetting.h"
-#include "FileHandling.h"
+#include "Survival_log.h"
 
 int main() {
     Game_setting game;
