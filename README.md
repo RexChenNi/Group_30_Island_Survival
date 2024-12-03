@@ -1,4 +1,5 @@
 #COMP2113 Group Project - Island Survival
+
 Member Identifications
 #1 Chen Ni
 #2 Liang Wanqing
@@ -7,6 +8,7 @@ Member Identifications
 #5 Vincent
 
 Application description
+
 #Overview: The application is an interactive survival game where players navigate the challenges of being stranded on a deserted island. Players manage health points (HP), hunger, and mental status while engaging in various activities to gather resources, craft items, and ultimately escape the island.
 
 #Gameplaye Mechanics:
@@ -19,7 +21,9 @@ Application description
   1. Exploration: Random evetns, such as animal attacks or discovering valuable blueprints, add unpredictability. Players can gather materials and ingredients during exploration.
 
 a. Probability of encountering a cave: 20% chance - given a choice of entering or not (70% chance of losing health; 90% chance of finding a blueprint; 10% chance of nothing happen)
+
 b. Probability of animal attack: 20% chance - causing 40 HP deduction
+
 c. Blueprint types: gun_bullet, signal_flare, armor
 
   2. Cooking: Players can prepare food to replenish the hunger bar. (The player cannot cook without campfire, player can cook 2 dishes in this step)
@@ -35,10 +39,15 @@ c. Blueprint types: gun_bullet, signal_flare, armor
   7. Attempting Escape: Players can attempt to escape the island when a boat is crafted. But there is a probability of failed escape every day (70% chance of successful escape, otherwise 50 HP deduction)
 
   8. Random Night Events & Extreme Weather Conditions:
+
 a. Wild animal attack: 20% chance - damage depending on the shielding effect of tools owned
+
 b. Poor sleeping quality: 20% chance - causing 15 mental deduction
+
 c. Extreme rainfall: 10% chance - causing 15 Hunger deduction and 5 mental deduction
+
 d. Extreme Cold: 10% chance - causing 20 Hunger deduction and 5 mental deduction
+
 e. Extreme Hot: 10% chance - causing 15 Hunger deduction and 10 mental deduction
 
 #Win Conditions:
