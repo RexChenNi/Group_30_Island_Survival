@@ -37,6 +37,7 @@ public:
     void appendToFile(string text);
     void readFile();
     void closeFile();
+    ofstream outFile;
 
 private:
     int day;
@@ -47,7 +48,7 @@ private:
     map<string, int> bag;
     vector<string> blueprints;
     string weather;
-    ofstream outFile;
+    
 
     struct Node {
         string name;
