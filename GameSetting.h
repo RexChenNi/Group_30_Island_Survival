@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <utility>
+#include <fstream>
 using namespace std;
 
 class Game_setting {
