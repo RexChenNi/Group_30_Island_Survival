@@ -1,4 +1,3 @@
-// GameSetting.h
 #ifndef GAME_SETTING_H
 #define GAME_SETTING_H
 
@@ -11,7 +10,6 @@ using namespace std;
 
 class GameSetting {
 public:
-    // Public methods
     void initialize_game();
     void start_of_day();
     pair<char, char> selection_menu();
@@ -34,7 +32,7 @@ public:
     void blueprint_list();
     void wildAnimalAttack();
     void poor_sleeping_quality();
-    void delete_list(Node*& head); // Method declaration
+    void delete_list(Node*& head); // Method to delete the linked list of blueprints
 
 private:
     int day;
@@ -46,12 +44,13 @@ private:
     vector<string> blueprints;
     string weather;
 
-    struct Node { // Declare Node struct within the class
+    // Node struct for managing linked lists, such as blueprints
+    struct Node {
         string name;
         Node* next;
     };
 
-    void delete_list(Node*& head); // Method declaration
+    // Additional private methods and data members if needed
 };
 
 #endif // GAME_SETTING_H
