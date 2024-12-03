@@ -1,13 +1,13 @@
 #COMP2113 Group Project - Island Survival
 
-<Member Identifications>
+Member Identification
 #1 Chen Ni
 #2 Liang Wanqing
 #3 Wang Keni 3036267745
 #4 Ian
 #5 Vincent
 
-<Application description>
+Application description
 
 #Overview: The application is an interactive survival game where players navigate the challenges of being stranded on a deserted island. Players manage health points (HP), hunger, and mental status while engaging in various activities to gather resources, craft items, and ultimately escape the island.
 
@@ -55,7 +55,7 @@
   1. Collect 35 wood and 20 mental to construct a boat
   2. Acquire a blueprint for a signal flare and gather 20 metal to produce it.
 
-<Coding features and Requirement>
+Coding features and Requirement
 
   1. Generation of random events: Random number generator is used to control the probability of random events in the gameplay, including the generation of random night events, extreme weather conditions, the probability of collecting different materials and ingredients, as well as th possibility of finding and exploring a cave and successful island escape. The header files <cstdlib> and <ctime> are included to facilate this feature.
      
