@@ -1,12 +1,12 @@
 #COMP2113 Group Project - Island Survival
-Member Identifications:
+Member Identifications
 #1 Chen Ni
 #2 Liang Wanqing
 #3 Wang Keni 3036267745
 #4 Ian
 #5 Vincent
 
-Application description:
+Application description
 #Overview: The application is an interactive survival game where players navigate the challenges of being stranded on a deserted island. Players manage health points (HP), hunger, and mental status while engaging in various activities to gather resources, craft items, and ultimately escape the island.
 
 #Gameplaye Mechanics:
