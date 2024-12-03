@@ -1,14 +1,17 @@
+// GameSetting.h
 #ifndef GAME_SETTING_H
 #define GAME_SETTING_H
 
 #include <map>
 #include <string>
 #include <vector>
+#include <utility>
 
 using namespace std;
 
 class GameSetting {
 public:
+    // Public methods
     void initialize_game();
     void start_of_day();
     pair<char, char> selection_menu();
@@ -31,20 +34,7 @@ public:
     void blueprint_list();
     void wildAnimalAttack();
     void poor_sleeping_quality();
-
-    int getHP() const { return HP; }
-    void setHP(int value) { HP = value; }
-
-    int getHunger() const { return Hunger; }
-    void setHunger(int value) { Hunger = value; }
-
-    int getMental() const { return Mental; }
-    void setMental(int value) { Mental = value; }
-
-    const map<string, int>& getBag() const { return bag; }
-    int getBagItem(const string& item) const { return bag.at(item); }
-    void addToBag(const string& item, int amount) { bag[item] += amount; }
-    void setBagItem(const string& item, int amount) { bag[item] = amount; }
+    void delete_list(Node*& head); // Method declaration
 
 private:
     int day;
@@ -56,6 +46,12 @@ private:
     vector<string> blueprints;
     string weather;
 
+    struct Node { // Declare Node struct within the class
+        string name;
+        Node* next;
+    };
+
+    void delete_list(Node*& head); // Method declaration
 };
 
 #endif // GAME_SETTING_H
