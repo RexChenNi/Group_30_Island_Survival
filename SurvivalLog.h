@@ -8,7 +8,7 @@ using namespace std;
 
 class Game_setting;
 
-class Survival_log {
+class SurvivalLog {
 public:
     static void openFile(Game_setting& game);
     static void writeFile(Game_setting& game, string data);
