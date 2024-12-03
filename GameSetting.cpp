@@ -1142,6 +1142,17 @@ void Game_setting::blueprint_list() {
     }
 
     delete_list(head);
+    void delete_list(Node*& head) {
+    Node* current = head;
+    Node* nextNode;
 
+    while (current != nullptr) {
+        nextNode = current->next;
+        delete current;
+        current = nextNode;
+    }
+
+    head = nullptr;
+}
 
 }
