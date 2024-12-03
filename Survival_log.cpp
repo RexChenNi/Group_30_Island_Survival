@@ -5,14 +5,14 @@
 
 using namespace std;
 
-void FileHandling::openFile(Game_setting& game) {
+void Survival_log::openFile(Game_setting& game) {
     game.outFile.open("Survival Log");
     if (!game.outFile) {
         cerr << "Error opening file!" << endl;
     }
 }
 
-void FileHandling::writeFile(Game_setting& game, std::string data) {
+void Survival_log::writeFile(Game_setting& game, std::string data) {
     if (game.outFile.is_open()) {
         game.outFile << data << endl;
     }
@@ -21,7 +21,7 @@ void FileHandling::writeFile(Game_setting& game, std::string data) {
     }
 }
 
-void FileHandling::appendToFile(Game_setting& game, std::string text) {
+void Survival_log::appendToFile(Game_setting& game, std::string text) {
     ofstream outFile("Survival Log", ios::app);
     if (!outFile) {
         cerr << "Error opening file for appending!" << endl;
@@ -31,13 +31,13 @@ void FileHandling::appendToFile(Game_setting& game, std::string text) {
     outFile.close();
 }
 
-void FileHandling::closeFile(Game_setting& game) {
+void Survival_log::closeFile(Game_setting& game) {
     if (game.outFile.is_open()) {
         game.outFile.close();
     }
 }
 
-void FileHandling::readFile(Game_setting& game) {
+void Survival_log::readFile(Game_setting& game) {
     ifstream inFile("Survival Log");
     if (!inFile) {
         cerr << "Error opening file: " << "Survival Log" << endl;
