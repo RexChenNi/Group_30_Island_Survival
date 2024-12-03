@@ -26,7 +26,7 @@ Application description
 
     c. Blueprint types: gun_bullet, signal_flare, armor
 
-  2. Cooking: Players can prepare food to replenish the hunger bar. The player cannot cook without campfire and they can cook 2 dishes each time.
+  2. Cooking: Players can prepare food to replenish the hunger bar. The player cannot cook without campfire and they can cook 2 dishes each time. (P.S. This choice will only appear once the player has crafted a campfire.)
 
   3. Eating:  Players can consume cooked food to recover the hunger bar or mental bar. This activity does not deduct hunger bar and is not counted as a move. (P.S. Eating directly from gathered ingredients may have negative effects on HP and mental status.)
 
