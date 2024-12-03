@@ -1,5 +1,5 @@
-#ifndef FILE_HANDLING_H
-#define FILE_HANDLING_H
+#ifndef SURVIVAL_LOG_H
+#define SURVIVAL_LOG_H
 
 #include <fstream>
 #include <string>
@@ -8,7 +8,7 @@ using namespace std;
 
 class Game_setting;
 
-class FileHandling {
+class Survival_log {
 public:
     static void openFile(Game_setting& game);
     static void writeFile(Game_setting& game, string data);
