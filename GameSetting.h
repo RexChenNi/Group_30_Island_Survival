@@ -1,3 +1,4 @@
+// GameSetting.h
 #ifndef GAME_SETTING_H
 #define GAME_SETTING_H
 
@@ -8,37 +9,23 @@
 
 using namespace std;
 
- // Node struct for managing linked lists, such as blueprints
-    struct Node {
-        string name;
-        Node* next;
-    };
-
 class GameSetting {
 public:
+    // Existing public methods...
     void initialize_game();
     void start_of_day();
     pair<char, char> selection_menu();
     void perform_action();
-    void exploreIsland();
-    void cookFood();
-    void eatFood();
-    void craftItem();
-    void rest();
-    void hunting();
-    void attempt_escape();
-    void print_bag();
-    void nightEvent();
-    string weather_ran();
-    pair<int, int> deduction();
-    int check_health();
-    bool check_gun_bullet_blueprint();
-    bool check_signal_flare_blueprint();
-    bool check_armor_blueprint();
-    void blueprint_list();
-    void wildAnimalAttack();
-    void poor_sleeping_quality();
-    void delete_list(Node*& head); // Method to delete the linked list of blueprints
+    // Other methods...
+
+    // Getter and Setter methods
+    int getHP() const;
+    void setHP(int value);
+    int getHunger() const;
+    void setHunger(int value);
+    int getMental() const;
+    void setMental(int value);
+    int getBagItem(const string& item) const;
 
 private:
     int day;
@@ -50,8 +37,14 @@ private:
     vector<string> blueprints;
     string weather;
 
-   
-    // Additional private methods and data members if needed
+    // Node struct for managing linked lists, such as blueprints
+    struct Node {
+        string name;
+        Node* next;
+    };
+
+    // Existing private methods...
+    void delete_list(Node*& head);
 };
 
 #endif // GAME_SETTING_H
