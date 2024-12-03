@@ -20,7 +20,7 @@ void Game_setting::initialize_game() {
     openFile();
     writeFile("This Survival Log records your actions in each day\n");
     cout << "Game initialized!" << endl;
-    cout << "Crafting campfire and shelter is key!!!" << endl;
+    cout << "Cooking is allowed only when you have crafted campfire and shelter is key to survive the night!!!" << endl;
 }
 
 void Game_setting::start_of_day() {
