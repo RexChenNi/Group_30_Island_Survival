@@ -7,6 +7,10 @@
 
 using namespace std;
 
+struct Node {
+    string name;
+    Node* next;
+};
 void Game_setting::initialize_game() {
     day = 1;               // Correctly initializing member variables
     HP = 100;
