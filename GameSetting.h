@@ -23,6 +23,7 @@ public:
     void print_bag();
     string weather_ran();
     pair<int, int> deduction();
+    pair<char, char> selection_menu();
     int check_health();
     bool check_gun_bullet_blueprint();
     bool check_signal_flare_blueprint();
