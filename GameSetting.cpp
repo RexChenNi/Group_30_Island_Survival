@@ -1115,7 +1115,7 @@ void Game_setting::readFile() {
     inFile.close();
 }
 
- void delete_list(Node*& head) {
+ void Game_setting::delete_list(Node*& head) {
     Node* current = head;
     Node* nextNode;
 
