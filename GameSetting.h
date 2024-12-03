@@ -8,6 +8,12 @@
 
 using namespace std;
 
+ // Node struct for managing linked lists, such as blueprints
+    struct Node {
+        string name;
+        Node* next;
+    };
+
 class GameSetting {
 public:
     void initialize_game();
@@ -44,12 +50,7 @@ private:
     vector<string> blueprints;
     string weather;
 
-    // Node struct for managing linked lists, such as blueprints
-    struct Node {
-        string name;
-        Node* next;
-    };
-
+   
     // Additional private methods and data members if needed
 };
 
