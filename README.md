@@ -41,14 +41,18 @@ Application description
   8. Random Night Events & Extreme Weather Conditions:
 
     a. Wild animal attack: 20% chance - damage depending on the shielding effect of tools owned
-
     b. Poor sleeping quality: 20% chance - causing 15 mental deduction
-
     c. Extreme rainfall: 10% chance - causing 15 Hunger deduction and 5 mental deduction
-
     d. Extreme Cold: 10% chance - causing 20 Hunger deduction and 5 mental deduction
-
     e. Extreme Hot: 10% chance - causing 15 Hunger deduction and 10 mental deduction
+
+  9. Shield effect: Players can craft various kinds of tools to enhance their shield while encountering danger and attacks, and gain protection while entering into cave.
+
+    a. Knife: + 10 shield each
+    b. Upgraded knife: + 30 shield each
+    c. Fur clothing: + 20 shield each
+    d. Gun & bullet: + 50 shield each
+    e. Armor: + 50 shield each
 
 #Win Conditions:
   To win, players must:
