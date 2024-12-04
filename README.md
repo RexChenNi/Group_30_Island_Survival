@@ -61,28 +61,35 @@ Coding features and Requirement
 
   1. Generation of random events: Random number generator is used to control the probability of random events in the gameplay, including the generation of random night events, extreme weather conditions, the probability of collecting different materials and ingredients, as well as th possibility of finding and exploring a cave and successful island escape. The header files "cstdlib" and "ctime" are included to facilate this feature.
      
-  2. Data structures for storing data: A map is used to store the the player's bag and a vector is used to store the blueprints. Everytime the player collect some materials, ingredients or blueprints, the corresponding items will be updated into the map and vector for furthur use. In addition, a pair is used to perform game stats (HP, Hunger & Mental) deduction after each step taken by the player. The corresponding deduction effects on three stats under different weather conditions and random events are stored in the pair. The header files "vector", "map", and "utility" are used to facilitate these features.
+  2. Data structures for storing data: A map is used to store the items in the player's bag. Everytime the player collect some materials or ingredients, the corresponding items will be updated into the map for furthur use. The bag is automatically printed after each exploring and before cooking and crafting. In addition, a pair is used to perform game stats (HP, Hunger & Mental) deduction after each step taken by the player. The corresponding deduction effects on three stats under different weather conditions and random events are stored in the pair. The header files "map" and "utility" are used to facilitate these features.
   
-  3. Dynamic memory management: Vectors are used in our game for storing the bag items and the blueprints owned. Everytime the player collects some items, the new items will be added to the bag and the existing items will display an increment. The opposite applies when the player consumes something through cooking, eating or crafting. The bag is automatically printed after each explorating and before cooking and crafting. The header files "vector" and "string" are used to facilitate these features. Besides, a linked list is also used to perform dynamic memory management. A blueprint list is created to store the blueprints that have not been found by the player. Everytime the player finds a blueprint, the blueprint-checking functions will reference to the linked list to check the type of the blueprint and delete from the linked list through linear searching.
+  3. Dynamic memory management: A vector is used in for storing the blueprints owned. Everytime the player collects some blueprints, the new blueprints will be added into the vector and the existing ones will display an increment. The opposite applies when the player consumes something through crafting. The header files "vector" and "string" are used to facilitate these features. Besides, a linked list is also used to perform dynamic memory management. A blueprint list is created to store the blueprints that have not been found by the player. Everytime the player finds a blueprint, the blueprint-checking functions will reference to the linked list to check the type of the blueprint and delete from the linked list through linear searching.
 
   4. File input/output: A survival log is created from the first day of the game. In each day, the weather and activities will be inputed into the survival log through writing to the file. After each time of game-playing, the file will be read and the player can choose to check the outputed survival log for memory retrieval and achievement records. This can assist the player to improve their game performance and gain better game experience next time. The header file "fstream" is used to facilitate the feature.
 
-  5. Program codes in multiple files: The program codes are stored in Gamesetting.cpp and Survival_log.cpp files separately. The former deals with the basic game setting while utilizing a class to declare all functions and variables to be used consistently throughout the game. It supports the features of random event generation, data structure storage, and dynamic memory management. The latter is in charge of creating, writing and reading the survival log that support the file input/output features. A Survival_log class is also created to declare all functions tobe used in producing the survival log.
+  5. Program codes in multiple files: The program codes are stored in Gamesetting.cpp and Survival_log.cpp files separately. The former deals with the basic game setting while utilizing a Gamesetting class to declare all functions and variables to be used consistently throughout the game. It supports the features of random event generation, data structure storage, and dynamic memory management. The latter is in charge of creating, writing and reading the survival log that supports the file input/output features. A SurvivalLog class is also created to declare all functions to be used in producing the survival log.
 
 Compilation and Execution Instructions
 
-  1. Open a Linux OS in your computer and connect to the Linux server
-  2. Enter the command: git clone https://github.com/RexChenNi/Survival-Game.git
-  3. Check in SFTP to see if the repository has been successfully cloned into your own directory
-  4. Enter the command: cd Survival-Game (changes the current directory to Survival-Game)
-  5. Enter the command: make
+  1. Open a Linux operating system on your computer and connect to the Linux server
+  2. Run the command:
+
+    git clone https://github.com/RexChenNi/Survival-Game.git
+  3. Use SFTP to verify that the repository has been successfully cloned into your directory
+  4. Change to the repository directory by entering
+
+    cd Survival-Game
+  5. Compile the program by entering the command:
+
+    make
+  6. Compilation process:
 
     g++ -c Main.cpp
     g++ -c GameSetting.cpp
     g++ -c Survival_log.cpp
     g++ -o main Main.o GameSetting.o Survival_log.o
+  7. Run the program by entering:
 
-  6. Compilation succeeds (shown above)
-  7. Enter the command: ./main
-  8. Once you see "Game initialized!", you can start playing based on the game instructions provided.
-  9. Enjoy your game and Hope you survive :)
+    ./main
+  9. Once you see "Game initialized!", you can start playing based on the game instructions provided.
+  10. Enjoy your game, and may you survive! :)
