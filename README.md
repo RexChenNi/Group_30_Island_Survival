@@ -21,9 +21,7 @@ Application description
   1. Exploration: Random evetns, such as animal attacks or discovering valuable blueprints, add unpredictability. Players can gather materials and ingredients during exploration.
 
     a. Probability of encountering a cave: 20% chance - given a choice of entering or not (70% chance of losing health; 90% chance of finding a blueprint; 10% chance of nothing happen)
-
     b. Probability of animal attack: 20% chance - causing 40 HP deduction
-
     c. Blueprint types: gun_bullet, signal_flare, armor
 
   2. Cooking: Players can prepare food to replenish the hunger bar. The player cannot cook without campfire and they can cook 2 dishes each time. (P.S. This choice will only appear once the player has crafted a campfire.)
