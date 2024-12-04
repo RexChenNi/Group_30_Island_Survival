@@ -86,8 +86,8 @@ Compilation and Execution Instructions
 
     g++ -c Main.cpp
     g++ -c GameSetting.cpp
-    g++ -c Survival_log.cpp
-    g++ -o main Main.o GameSetting.o Survival_log.o
+    g++ -c SurvivalLog.cpp
+    g++ -o main Main.o GameSetting.o SurvivalLog.o
   7. Run the program by entering:
 
     ./main
