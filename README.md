@@ -91,5 +91,5 @@ Compilation and Execution Instructions
   7. Run the program by entering:
 
     ./main
-  9. Once you see "Game initialized!", you can start playing based on the game instructions provided.
-  10. Enjoy your game, and may you survive! :)
+  8. Once you see "Game initialized!", you can start playing based on the game instructions provided.
+  9. Enjoy your game, and may you survive! :)
