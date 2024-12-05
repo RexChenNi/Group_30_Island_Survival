@@ -386,7 +386,7 @@ void Game_setting::exploreIsland() {
     cout << " >>> during your exploration!" << endl;
 }
 
-void Game_setting::print_bag() {
+void Game_setting::print_bag() { //printing items in the bag owned by player 
     cout << "+--------------------+----------------+" << endl;
     cout << "|       Item         |     Quantity   |" << endl;
     cout << "+--------------------+----------------+" << endl;
