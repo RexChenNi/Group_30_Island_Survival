@@ -366,7 +366,7 @@ void Game_setting::exploreIsland() {
     cout << "\nYou found <<< ";
     if (choice1 == 'M' || choice1 == 'm') {
         // Random materials
-        int materialSet = rand() % 4;
+        int materialSet = rand() % 4; // 4 possible combinations of material 
         switch (materialSet) {
         case 0: bag["metal"] += 2; bag["wood"] += 3; cout << "+2 metal, +3 wood"; appendToFile("You gained 2 metal and 3 wood during the exploration\n");break;
         case 1: bag["wood"] += 5; bag["herb"] += 1; cout << "+5 wood, +1 herb"; appendToFile("You gained 5 wood and 1 herb during the exploration\n"); break;
