@@ -653,7 +653,7 @@ void Game_setting::eatFood() {
 void Game_setting::craftItem() {  
     // Allowing players to craft items to reduce the deduction of HP, hunger or metal
     // Allowing players to craft campfire and enabling the cookfood option in the selection menu
-    // Allowing players to craft boats which is a crucial item for winning the game
+    // Allowing players to craft boats, Gun&bullet, Signal Flare or Armor, which are crucial items for winning the game
     cout << "+--------------------+---------------------+" << endl;
     cout << "| 1. Campfire       | Wood-5               |" << endl;
     cout << "| 2. Knife          | Wood-3 , Metal-3     |" << endl;
@@ -666,6 +666,8 @@ void Game_setting::craftItem() {
     if (check_gun_bullet_blueprint()) {
         cout << "| 8. Gun&bullet     | Metal-15             |" << endl;
     }
+    // choice 9 only enables when the Signal Flare being explored in the island and stored in the bag map
+
     if (check_signal_flare_blueprint()) {
         cout << "| 9. Signal Flare   | Metal-20             |" << endl;
     }
