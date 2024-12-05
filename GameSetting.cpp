@@ -24,6 +24,369 @@ void Game_setting::initialize_game() { // Correctly initializing member variable
     cout << "Cooking is allowed only when you have crafted campfire and shelter is key to survive the night!!!" << endl;
 }
 
+void Game_setting::start_of_day() { // starting the first day in the game
+    step_remains = 4;
+    appendToFile("Day " + to_string(day) + ": Today's weather is " + weather + "\n");
+    cout << "Good morning! It's your " << day << " day on the island. The weather today is " << weather << "." << endl;
+    cout << "You have " << step_remains << " actions available today.\n";
+}
+pair<char, char> Game_setting::selection_menu() { 
+    char choice;
+    char ready_to_escape = 'N'; // Tracks escape readiness
+
+    // Print selection menu for action
+    cout << "+------------------------------+" << endl;
+    cout << "| What do you want to do next: |" << endl;
+    cout << "+------------------------------+" << endl;
+    cout << "| [1] Exploring the island     |" << endl;
+    cout << "| [2] Eating                   |" << endl;
+    cout << "| [3] Crafting                 |" << endl;
+    cout << "| [4] Resting                  |" << endl;
+    cout << "| [5] Hunting                  |" << endl;
+
+
+    // Conditionally add "Cooking" option
+    if (bag.find("campfire") != bag.end()) {
+        cout << "| [6] Cooking                  |" << endl;
+    }
+
+    // Conditionally add "Escape" option
+    if (bag.find("signal flare") != bag.end() || bag.find("boat") != bag.end()) {
+        cout << "| [7] Attempt to escape        |" << endl;
+        ready_to_escape = 'Y'; // Ready to escape
+    }
+
+    cout << "+------------------------------+" << endl;
+    cout << "Please enter your choice: "; //read action choice of player
+    cin >> choice;
+    cout << endl;
+
+    return { choice, ready_to_escape }; // Return both choice and escape readiness
+}
+
+void Game_setting::perform_action() {
+    while (step_remains > 0) {
+        auto selection = selection_menu(); 
+        char choice = selection.first;
+        char ready_to_escape = selection.second;
+
+        switch (choice) {
+        case '1': //exploring the island
+            appendToFile("Step " + to_string(5 - step_remains) + " Exploring Island: \n");
+            exploreIsland();
+            step_remains--;
+            if (weather == "extreme rainfall") {
+                HP -= 20;
+                HP -= check_health() * 20;
+                Hunger -= 30;
+                Mental -= 5;
+                Hunger = (max(Hunger, 0));
+                Mental = (max(Mental, 0));
+            }
+            else {
+                HP -= check_health() * 20;
+                Hunger -= deduction().first;
+                Mental -= deduction().second;
+                Hunger = (max(Hunger, 0));
+                Mental = (max(Mental, 0));
+            }
+            cout << "+-------------------------------+" << endl;
+            cout << "|   Current Stats               |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "| HP:     " << setw(3) << HP << " / 100             |" << endl;
+            cout << "| Hunger: " << setw(3) << Hunger << " / 100             |" << endl;
+            cout << "| Mental: " << setw(3) << Mental << " / 100             |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "" << endl;
+            break;
+        case '2'://eating
+            print_bag();
+            eatFood();
+            cout << "+-------------------------------+" << endl;
+            cout << "|   Current Stats               |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "| HP:     " << setw(3) << HP << " / 100             |" << endl;
+            cout << "| Hunger: " << setw(3) << Hunger << " / 100             |" << endl;
+            cout << "| Mental: " << setw(3) << Mental << " / 100             |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "" << endl;
+            break;
+        case '3'://crafting
+            print_bag();
+            appendToFile("Step " + to_string(5 - step_remains) + " Crafting Items: ");
+            craftItem();
+            step_remains--;
+            HP -= check_health() * 20;
+            Hunger -= deduction().first;
+            Mental -= deduction().second;
+            if (Hunger <= 0)  Hunger = (max(Hunger, 0));
+            else Hunger = min(Hunger, 100);
+            if (Mental <= 0)  Mental = (max(Mental, 0));
+            else Mental = min(Mental, 100);
+            cout << "+-------------------------------+" << endl;
+            cout << "|   Current Stats               |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "| HP:     " << setw(3) << HP << " / 100             |" << endl;
+            cout << "| Hunger: " << setw(3) << Hunger << " / 100             |" << endl;
+            cout << "| Mental: " << setw(3) << Mental << " / 100             |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "" << endl;
+            break;
+        case '4'://resting
+            rest();
+            appendToFile("Step " + to_string(5 - step_remains) + " Resting: You had a good rest\n");
+            step_remains--;
+            cout << "+-------------------------------+" << endl;
+            cout << "|   Current Stats               |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "| HP:     " << setw(3) << HP << " / 100             |" << endl;
+            cout << "| Hunger: " << setw(3) << Hunger << " / 100             |" << endl;
+            cout << "| Mental: " << setw(3) << Mental << " / 100             |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "" << endl;
+            break;
+        case '5'://hunting
+            appendToFile("Step " + to_string(5 - step_remains) + " Hunting: ");
+            hunting();
+            step_remains--;
+            HP -= check_health() * 20;
+            Hunger -= deduction().first;
+            Mental -= deduction().second;
+            if (Hunger <= 0)  Hunger = (max(Hunger, 0));
+            else Hunger = min(Hunger, 100);
+            if (Mental <= 0)  Mental = (max(Mental, 0));
+            else Mental = min(Mental, 100);
+            cout << "+-------------------------------+" << endl;
+            cout << "|   Current Stats               |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "| HP:     " << setw(3) << HP << " / 100             |" << endl;
+            cout << "| Hunger: " << setw(3) << Hunger << " / 100             |" << endl;
+            cout << "| Mental: " << setw(3) << Mental << " / 100             |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "" << endl;
+            break;
+        case '6'://cooking food
+            print_bag();
+            appendToFile("Step " + to_string(5 - step_remains) + " Cooking: ");
+            if (bag.find("campfire") != bag.end()) {
+                cookFood();
+                step_remains--;
+            }
+            else {
+                appendToFile("Cooking is not available without a campfire!\n");
+                cout << "Cooking is not available without a campfire!" << endl;
+            }
+            HP -= check_health() * 20;
+            Hunger -= deduction().first;
+            Mental -= deduction().second;
+            if (Hunger <= 0)  Hunger = (max(Hunger, 0));
+            else Hunger = min(Hunger, 100);
+            if (Mental <= 0)  Mental = (max(Mental, 0));
+            else Mental = min(Mental, 100);
+            cout << "+-------------------------------+" << endl;
+            cout << "|   Current Stats               |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "| HP:     " << setw(3) << HP << " / 100             |" << endl;
+            cout << "| Hunger: " << setw(3) << Hunger << " / 100             |" << endl;
+            cout << "| Mental: " << setw(3) << Mental << " / 100             |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "" << endl;
+            break;
+        case '7'://attempt escaping
+            if (ready_to_escape == 'Y') {
+                appendToFile("Step " + to_string(5 - step_remains) + " Attempt to escape: ");
+                attempt_escape();
+                HP -= check_health() * 20;
+                Hunger -= deduction().first;
+                Mental -= deduction().second;
+                step_remains--;
+            }
+            else {
+                cout << "You are not ready to escape yet!" << endl;
+            }
+            cout << "+-------------------------------+" << endl;
+            cout << "|   Current Stats               |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "| HP:     " << setw(3) << HP << " / 100             |" << endl;
+            cout << "| Hunger: " << setw(3) << Hunger << " / 100             |" << endl;
+            cout << "| Mental: " << setw(3) << Mental << " / 100             |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "" << endl;
+            break;
+        default:
+            cout << "Invalid input! Please select a valid option." << endl;
+            break;
+        }
+        print_bag();
+        if (HP <= 0) {
+            cout << "You have succumbed to your injuries. Game Over!" << endl;
+            cout << "We have a Survival Log for you.Do you want to read it? [Y/N]" << endl;
+            appendToFile("You died");
+            char read;
+            cin >> read;
+            if (tolower(read) == 'y') readFile();
+            if (tolower(read) == 'n') exit(0);
+            exit(0); // End the game
+        }
+        if (step_remains > 0) {
+            cout << "You have " << step_remains << " steps remaining today.\n";
+        }
+        else {
+            cout << "You have no steps remaining for today.\n";
+        }
+    }
+    day++;
+    cout << "The day has ended. Preparing for the next day...\n";
+    cout << "-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+" << '\n';
+    cout << "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-" << '\n';
+    cout << "-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+" << '\n';
+    cout << "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-" << '\n';
+    night_event();
+    cout << "+-------------------------------+" << endl;
+    cout << "|   Current Stats               |" << endl;
+    cout << "+-------------------------------+" << endl;
+    cout << "| HP:     " << setw(3) << HP << " / 100             |" << endl;
+    cout << "| Hunger: " << setw(3) << Hunger << " / 100             |" << endl;
+    cout << "| Mental: " << setw(3) << Mental << " / 100             |" << endl;
+    cout << "+-------------------------------+" << endl;
+    cout << "" << endl;
+    appendToFile("\n");
+    if (HP <= 0) {//essentially lost the game
+        cout << "You didn't survive the night. Game Over!" << endl;
+        cout << "We have a Survival Log for you.Do you want to read it? [Y/N]" << endl;
+        appendToFile("You died");
+        char read;
+        cin >> read;
+        if (tolower(read) == 'y') readFile(); // print survival log for player
+        if (tolower(read) == 'n') exit(0); // exit the game
+        exit(0);
+    }
+    weather = weather_ran();//decide weather of current day
+    start_of_day();
+    perform_action(); // Start the next day's actions
+
+}
+
+
+void Game_setting::exploreIsland() {
+    srand(time(0)); // Seed the random number generator
+
+    // Step 1: Prompt user to choose between materials or ingredients
+    cout << "+------------------------------------------------+" << endl;
+    cout << "| You can only look for either MATERIALS or      |" << endl;
+    cout << "| INGREDIENTS each time.                         |" << endl;
+    cout << "| Which one would you choose?                    |" << endl;
+    cout << "+------------------------------------------------+" << endl;
+    cout << "| [M] MATERIALS                                  |" << endl;
+    cout << "| [I] INGREDIENTS                                |" << endl;
+    cout << "+------------------------------------------------+" << endl;
+
+    char choice1;
+    cin >> choice1;
+
+    // Calculate potential damage
+    int shield = 0;
+    if (bag["knife"] > 0) shield += bag["knife"] * 10;
+    if (bag["upgraded knife"] > 0) shield += bag["upgraded knife"] * 30;
+    if (bag["fur clothing"] > 0) shield += bag["fur clothing"] * 20;
+    if (bag["gun&bullet"] > 0) shield += bag["gun&bullet"] * 50;
+    if (bag["armor"] > 0) shield += bag["armor"] * 50;
+
+    // Step 2: Random event
+    int event = rand() % 100 + 1; // Random number between 1 and 100
+    if (event <= 20) {
+        // Animal attack
+        cout << "You were attacked by a wild animal while exploring the island and lost " << max(40 - shield, 0)
+            << " HP! Crafted items like knives or fur clothing have reduced the damage." << endl;
+        HP -= max(40 - shield, 0);
+
+    }
+    else if (event <= 40) {
+        // Cave discovery
+
+        cout << "*** You stumbled upon a mysterious cave that might hold hidden dangers or treasures! ***" << '\n';
+        cout << "Exploring the cave has a 70% chance of being trapped, costing you "
+            << 140 - shield << " HP. Crafted items like knives or fur clothing have reduced the damage." << endl;
+
+        if (140 - shield >= HP) {
+            cout << "HINT: If the cost of HP is larger than your current HP, you will die immediately. "
+                << "Consider crafting some weapons first." << endl;
+        }
+
+        cout << "Do you wish to take the risk and enter the cave? (Y/N): ";
+        char choice;
+        cin >> choice;
+        cout << endl;
+
+        if (tolower(choice) == 'y') {
+            int caveEvent = rand() % 100 + 1; // Random number between 1 and 100
+
+            if (caveEvent <= 70) {
+                // 70% chance of losing health
+                HP -= max(140 - shield, 0);
+                cout << "You were trapped in the cave and lost " << max(140 - shield, 0) << " HP!" << endl;
+            }
+            if (caveEvent <= 90) {
+                // 90% chance of finding blueprints
+                string blueprint;
+                if (!blueprints.empty()) {
+                    int item_v = rand() % blueprints.size();
+                    blueprint = blueprints[item_v];
+                    blueprints.erase(blueprints.begin() + item_v);
+                }
+                bag[blueprint] += 1;
+                cout << "Congrats! You discovered valuable " << blueprint << "inside the cave!These could help you craft powerful items." << endl;
+            }
+            else {
+                // 10% chance of nothing happening
+                cout << "You carefully explored the cave but found nothing unusual. At least you came out unharmed." << endl;
+            }
+        }
+        else {
+            // choose not to enter the cave 
+            cout << "You decided not to take the risk and left the cave untouched." << endl;
+        }
+        cout << "Your current HP: " << HP << endl;
+    }
+
+    // Display current HP and check if the player is still alive
+
+    if (HP <= 0) {
+        cout << "You have succumbed to your injuries. Game Over!" << endl;
+        cout << "We have a Survival Log for you.Do you want to read it? [Y/N]" << endl;
+        appendToFile("You died");
+        char read;
+        cin >> read;
+        if (tolower(read) == 'y') readFile(); //print survival log for player
+        if (tolower(read) == 'n') exit(0);
+        exit(0); // End the game
+    }
+
+    // Step 3: Collect materials or ingredients based on the player's choice
+    cout << "\nYou found <<< ";
+    if (choice1 == 'M' || choice1 == 'm') {
+        // Random materials
+        int materialSet = rand() % 4; // 4 possible combinations of material 
+        switch (materialSet) {
+        case 0: bag["metal"] += 2; bag["wood"] += 3; cout << "+2 metal, +3 wood"; appendToFile("You gained 2 metal and 3 wood during the exploration\n");break;
+        case 1: bag["wood"] += 5; bag["herb"] += 1; cout << "+5 wood, +1 herb"; appendToFile("You gained 5 wood and 1 herb during the exploration\n"); break;
+        case 2: bag["metal"] += 5; cout << "+5 metal"; appendToFile("You gained 5 metal during the exploration\n"); break;
+        case 3: bag["metal"] += 3; bag["wood"] += 3; bag["herb"] += 1; cout << "+3 metal, +3 wood, +1 herb"; appendToFile("You gained 3 metal, 3 wood and 1 herb during the exploration\n"); break;
+        }
+    }
+    else if (choice1 == 'I' || choice1 == 'i') {
+        // Random ingredients collection 
+        int ingredientSet = rand() % 4;
+        switch (ingredientSet) {
+        case 0: bag["fruit"] += 1; bag["fish"] += 1; cout << "+1 fruit, +1 fish"; appendToFile("You gained 1 fruit and 1 fish during the exploration\n"); break;
+        case 1: bag["fruit"] += 1; bag["meat"] += 1; cout << "+1 fruit, +1 meat"; appendToFile("You gained 1 fruit and 1 meat during the exploration\n");break;
+        case 2: bag["fish"] += 1; bag["meat"] += 1; cout << "+1 fish, +1 meat";appendToFile("You gained 1 fish and 1 meat during the exploration\n"); break;
+        case 3: bag["fruit"] += 1; bag["fish"] += 1; bag["meat"] += 1; cout << "+1 fruit, +1 fish, +1 meat"; appendToFile("You gained 1 fruit, 1 fish and 1 meat during the exploration\n"); break;
+        }
+    }
+    cout << " >>> during your exploration!" << endl;
+}
+
 void Game_setting::print_bag() { //printing items in the bag owned by player 
     cout << "+--------------------+----------------+" << endl;
     cout << "|       Item         |     Quantity   |" << endl;
