@@ -997,7 +997,7 @@ void Game_setting::attempt_escape() {
 string Game_setting::weather_ran() {
     // calculates the impact of weather on each day.
     // randomly generate the weather on that day, with a 70% chance to be sunny, 10% to be rainy, 10% to be cold and 10% to be hot.
-    //Reduce mental and HP  based on the weather
+    // Reduce mental and HP  based on the weather
     int weather_index;
     string weather;
     srand(time(NULL));
@@ -1018,6 +1018,7 @@ string Game_setting::weather_ran() {
 }
 
 pair<int, int>Game_setting::deduction() {
+    // Input the weather and calculate the deduction in HP and mental bar
     pair<int, int> deduction;
     if (weather == "sunny") {
         deduction.first = 15;
