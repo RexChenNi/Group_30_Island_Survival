@@ -506,7 +506,8 @@ void Game_setting::cookFood() {
 
 }
 
-void Game_setting::eatFood() {
+void Game_setting::eatFood() {   
+    //disaplay a selection menu of the food for players to recover their conditions
     cout << "+-------------------------------+" << endl;
     cout << "|          Eating Menu          |" << endl;
     cout << "+-------------------------------+" << endl;
