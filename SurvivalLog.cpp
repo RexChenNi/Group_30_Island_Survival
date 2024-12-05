@@ -15,6 +15,7 @@ void SurvivalLog::openFile(Game_setting& game) {
 } //No return value. Prints an error message to cerr if the file cannot be opened.
 
 void SurvivalLog::writeFile(Game_setting& game, string data) {
+    // input new data into the survival log
     if (game.outFile.is_open()) {
         game.outFile << data << endl;
     }
