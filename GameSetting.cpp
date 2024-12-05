@@ -967,6 +967,7 @@ void Game_setting::hunting() {
 }
 
 void Game_setting::attempt_escape() {
+    // Evaluate if the player can successfully escape the island and win the game.
     if (bag.find("boat") != bag.end() || bag.find("signal flare") != bag.end()) {
         cout << "You have the necessary items to attempt an escape!" << endl;
 
