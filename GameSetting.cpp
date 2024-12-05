@@ -257,7 +257,7 @@ void Game_setting::perform_action() {
         appendToFile("You died");
         char read;
         cin >> read;
-        if (tolower(read) == 'y') readFile();
+        if (tolower(read) == 'y') readFile(); // print survival log for player
         if (tolower(read) == 'n') exit(0);
         exit(0);
     }
