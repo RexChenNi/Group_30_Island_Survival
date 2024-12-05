@@ -11,17 +11,7 @@ struct Node {
     string name;
     Node* next;
 };
-void Game_setting::initialize_game() {
-    day = 1;               // Correctly initializing member variables
-    HP = 100;
-    Hunger = 100;
-    Mental = 100;
-    weather = "sunny"; // Default weather
-    openFile();
-    writeFile("This Survival Log records your actions in each day\n");
-    cout << "Game initialized!" << endl;
-    cout << "Cooking is allowed only when you have crafted campfire and shelter is key to survive the night!!!" << endl;
-}
+
 
 void Game_setting::start_of_day() {
     step_remains = 4;
