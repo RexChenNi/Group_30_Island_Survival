@@ -1039,6 +1039,8 @@ pair<int, int>Game_setting::deduction() {
 }
 
 int Game_setting::check_health() {
+    // Remind the HP level to the player
+
     int count = 0;
     if (Hunger < 20 && HP != 0) {
         cout << "You are starving! WARNING!!!" << endl;
