@@ -851,6 +851,7 @@ void Game_setting::craftItem() {
 }
 
 void Game_setting::wildAnimalAttack() {
+    // Calculates the change in HP during each animal attack by a wild animal
     int shield = 0;
     if (bag["knife"] > 0) shield += bag["knife"] * 10;
     if (bag["upgraded knife"] > 0) shield += bag["upgraded knife"] * 30;
