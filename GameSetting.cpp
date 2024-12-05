@@ -66,12 +66,12 @@ pair<char, char> Game_setting::selection_menu() {
 
 void Game_setting::perform_action() {
     while (step_remains > 0) {
-        auto selection = selection_menu();
+        auto selection = selection_menu(); 
         char choice = selection.first;
         char ready_to_escape = selection.second;
 
         switch (choice) {
-        case '1':
+        case '1': //exploring the island
             appendToFile("Step " + to_string(5 - step_remains) + " Exploring Island: \n");
             exploreIsland();
             step_remains--;
