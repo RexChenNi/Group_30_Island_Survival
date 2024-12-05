@@ -30,11 +30,11 @@ void Game_setting::start_of_day() { // starting the first day in the game
     cout << "Good morning! It's your " << day << " day on the island. The weather today is " << weather << "." << endl;
     cout << "You have " << step_remains << " actions available today.\n";
 }
-pair<char, char> Game_setting::selection_menu() {
+pair<char, char> Game_setting::selection_menu() { 
     char choice;
     char ready_to_escape = 'N'; // Tracks escape readiness
 
-    // Print selection menu
+    // Print selection menu for action
     cout << "+------------------------------+" << endl;
     cout << "| What do you want to do next: |" << endl;
     cout << "+------------------------------+" << endl;
