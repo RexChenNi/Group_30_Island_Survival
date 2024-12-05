@@ -995,6 +995,7 @@ void Game_setting::attempt_escape() {
 }
 
 string Game_setting::weather_ran() {
+    // calculates the impact of weather in each day. 
     int weather_index;
     string weather;
     srand(time(NULL));
