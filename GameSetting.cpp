@@ -872,6 +872,8 @@ void Game_setting::poor_sleeping_quality() {
 }
 
 void Game_setting::night_event() {
+    // Describe what happens during the nighttime with a certain probability of wild animal attack and poor sleeping quality. 
+    
     int night_ran;
     srand(time(0));
     night_ran = rand() % 101;
