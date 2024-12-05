@@ -16,7 +16,7 @@ void Game_setting::initialize_game() { // Correctly initializing member variable
     day = 1;//initial number of day
     HP = 100;//initial hp        
     Hunger = 100;//initial hunger level
-    Mental = 100;
+    Mental = 100;//initial mental level
     weather = "sunny"; // Default weather
     openFile();
     writeFile("This Survival Log records your actions in each day\n");
