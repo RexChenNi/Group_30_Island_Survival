@@ -302,7 +302,7 @@ void Game_setting::exploreIsland() {
 
     }
     else if (event <= 40) {
-        // Discover cave
+        // Cave discovery
 
         cout << "*** You stumbled upon a mysterious cave that might hold hidden dangers or treasures! ***" << '\n';
         cout << "Exploring the cave has a 70% chance of being trapped, costing you "
