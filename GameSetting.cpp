@@ -912,6 +912,7 @@ void Game_setting::night_event() {
 }
 
 void Game_setting::rest() {
+    // Change HP and Mental Health after recovery, and reduce hunger bar. 
     cout << "You take a rest and regain energy." << endl;
     // Add functionality for resting
     HP += 20;
