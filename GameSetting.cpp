@@ -995,7 +995,8 @@ void Game_setting::attempt_escape() {
 }
 
 string Game_setting::weather_ran() {
-    // calculates the impact of weather in each day. 
+    // calculates the impact of weather on each day.
+    //randomly generate the weather on that day, with 70% chance to be sunny, 10% to be cold and 10% to be hot.
     int weather_index;
     string weather;
     srand(time(NULL));
