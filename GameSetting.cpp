@@ -424,8 +424,9 @@ void Game_setting::cookFood() {
     cout << "| 6. Roast Wolf     | Wolf Meat -1, Wood -1|" << endl;
     cout << "+-------------------+----------------------+" << endl;
 
-    int dishesCooked = 0;
+    int dishesCooked = 0; // Tracks the number of dishes cooked in this session.
 
+    // Allow the player to cook up to two dishes per session.
     while (dishesCooked < 2) {
         cout << "Select a dish to cook (1-6), or enter 0 to stop: ";
         int choice;
