@@ -928,7 +928,8 @@ void Game_setting::rest() {
 }
 
 void Game_setting::hunting() {
-    // Random event generator for hunting
+    // Random event generator for hunting for animals and food
+
     int hunt_event = rand() % 100;
     int shield = 0;
     if (bag["knife"] > 0) shield += bag["knife"] * 10;
