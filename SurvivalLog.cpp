@@ -36,6 +36,7 @@ void SurvivalLog::appendToFile(Game_setting& game, string text) {
 }
 
 void SurvivalLog::closeFile(Game_setting& game) {
+    // Close the file after all sting inputs
     if (game.outFile.is_open()) {
         game.outFile.close();
     }
