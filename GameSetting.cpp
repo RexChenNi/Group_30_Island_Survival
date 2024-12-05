@@ -99,7 +99,7 @@ void Game_setting::perform_action() {
             cout << "+-------------------------------+" << endl;
             cout << "" << endl;
             break;
-        case '2':
+        case '2'://eating
             print_bag();
             eatFood();
             cout << "+-------------------------------+" << endl;
@@ -111,7 +111,7 @@ void Game_setting::perform_action() {
             cout << "+-------------------------------+" << endl;
             cout << "" << endl;
             break;
-        case '3':
+        case '3'://crafting
             print_bag();
             appendToFile("Step " + to_string(5 - step_remains) + " Crafting Items: ");
             craftItem();
@@ -132,7 +132,7 @@ void Game_setting::perform_action() {
             cout << "+-------------------------------+" << endl;
             cout << "" << endl;
             break;
-        case '4':
+        case '4'://resting
             rest();
             appendToFile("Step " + to_string(5 - step_remains) + " Resting: You had a good rest\n");
             step_remains--;
@@ -145,7 +145,7 @@ void Game_setting::perform_action() {
             cout << "+-------------------------------+" << endl;
             cout << "" << endl;
             break;
-        case '5':
+        case '5'://hunting
             appendToFile("Step " + to_string(5 - step_remains) + " Hunting: ");
             hunting();
             step_remains--;
@@ -165,7 +165,7 @@ void Game_setting::perform_action() {
             cout << "+-------------------------------+" << endl;
             cout << "" << endl;
             break;
-        case '6':
+        case '6'://cooking food
             print_bag();
             appendToFile("Step " + to_string(5 - step_remains) + " Cooking: ");
             if (bag.find("campfire") != bag.end()) {
@@ -192,7 +192,7 @@ void Game_setting::perform_action() {
             cout << "+-------------------------------+" << endl;
             cout << "" << endl;
             break;
-        case '7':
+        case '7'://attempt escaping
             if (ready_to_escape == 'Y') {
                 appendToFile("Step " + to_string(5 - step_remains) + " Attempt to escape: ");
                 attempt_escape();
