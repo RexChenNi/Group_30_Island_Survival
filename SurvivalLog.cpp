@@ -15,7 +15,7 @@ void SurvivalLog::openFile(Game_setting& game) {
 } //No return value. Prints an error message to cerr if the file cannot be opened.
 
 void SurvivalLog::writeFile(Game_setting& game, string data) {
-    // input new data into the survival log
+    // input new data sting into the survival log
     if (game.outFile.is_open()) {
         game.outFile << data << endl;
     }
@@ -25,6 +25,7 @@ void SurvivalLog::writeFile(Game_setting& game, string data) {
 }
 
 void SurvivalLog::appendToFile(Game_setting& game, string text) {
+    //Input new text string into the survival log
     ofstream outFile("Survival Log", ios::app);
     if (!outFile) {
         cerr << "Error opening file for appending!" << endl;
