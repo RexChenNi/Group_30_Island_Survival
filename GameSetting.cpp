@@ -1172,6 +1172,8 @@ void Game_setting::readFile() {
 }
 
 void Game_setting::blueprint_list() {
+    // Print a list of players' blueprints.
+    // Input the blueprints in the bag.
     Node* head = nullptr;
 
     if (check_gun_bullet_blueprint()) {
