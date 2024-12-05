@@ -375,7 +375,7 @@ void Game_setting::exploreIsland() {
         }
     }
     else if (choice1 == 'I' || choice1 == 'i') {
-        // Random ingredients
+        // Random ingredients collection 
         int ingredientSet = rand() % 4;
         switch (ingredientSet) {
         case 0: bag["fruit"] += 1; bag["fish"] += 1; cout << "+1 fruit, +1 fish"; appendToFile("You gained 1 fruit and 1 fish during the exploration\n"); break;
