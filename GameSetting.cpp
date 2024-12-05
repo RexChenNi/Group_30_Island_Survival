@@ -650,7 +650,9 @@ void Game_setting::eatFood() {
 
 }
 
-void Game_setting::craftItem() {
+void Game_setting::craftItem() {  
+    // Allowing players to craft items to reduce the deduction of HP, hunger or metal
+    
     cout << "+--------------------+---------------------+" << endl;
     cout << "| 1. Campfire       | Wood-5               |" << endl;
     cout << "| 2. Knife          | Wood-3 , Metal-3     |" << endl;
