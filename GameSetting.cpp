@@ -12,8 +12,8 @@ struct Node {
     Node* next;
 };
 
-void Game_setting::initialize_game() {
-    day = 1;               // Correctly initializing member variables
+void Game_setting::initialize_game() { // Correctly initializing member variables
+    day = 1;               
     HP = 100;
     Hunger = 100;
     Mental = 100;
