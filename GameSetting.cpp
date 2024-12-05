@@ -474,6 +474,7 @@ void Game_setting::cookFood() {
             ingredient = "wolf meat";
             break;
         default:
+            // Handle invalid input and allow the player to try again.
             cout << "Invalid choice. Please select a valid dish." << endl;
             continue;
         }
