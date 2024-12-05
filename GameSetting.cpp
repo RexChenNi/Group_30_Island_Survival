@@ -13,7 +13,7 @@ struct Node {
 };
 
 void Game_setting::initialize_game() { // Correctly initializing member variables
-    day = 1;               
+    day = 1;               //initial number of day
     HP = 100;
     Hunger = 100;
     Mental = 100;
