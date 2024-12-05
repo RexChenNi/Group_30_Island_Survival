@@ -1102,7 +1102,7 @@ void Game_setting::openFile() {
 }
 
 void Game_setting::writeFile(string data) {
-    // Input a sting that records a new step in the survival game
+    // Input a sting of new data in the survival game
     if (outFile.is_open()) {
         outFile << data << endl;
     }
@@ -1112,6 +1112,7 @@ void Game_setting::writeFile(string data) {
 }
 
 void Game_setting::appendToFile(string text) {
+    // Input a sting that records new step in the survival game
     // Open the file in append mode
     ofstream outFile("Survival Log", ios::app);
 
@@ -1129,12 +1130,15 @@ void Game_setting::appendToFile(string text) {
 }
 
 void Game_setting::closeFile() {
+    // close the survivallog file
     if (outFile.is_open()) {
         outFile.close();
     }
 }
 
 void Game_setting::readFile() {
+    // Prints all steps and lines in the survival file
+    
     ifstream inFile("Survival Log"); // Open the file
 
     // Check if the file opened successfully
