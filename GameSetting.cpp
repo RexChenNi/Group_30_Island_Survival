@@ -405,6 +405,7 @@ void Game_setting::cookFood() {
     // Check if the player has a campfire
     if (bag.find("campfire") == bag.end() || bag["campfire"] < 1) {
         cout << "!!! You need a campfire to cook food. Craft one first!!!" << '\n' << endl;
+        // Restore the player's remaining step since cooking is unavailable.
         step_remains++;
         craftItem();
         return;
