@@ -43,6 +43,7 @@ void SurvivalLog::closeFile(Game_setting& game) {
 }
 
 void SurvivalLog::readFile(Game_setting& game) {
+    //Print all the steps pthe layer did in the survival log
     ifstream inFile("Survival Log");
     if (!inFile) {
         cerr << "Error opening file: " << "Survival Log" << endl;
