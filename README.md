@@ -74,11 +74,11 @@ Compilation and Execution Instructions
   1. Open a Linux operating system on your computer and connect to the Linux server
   2. Run the command:
 
-    git clone https://github.com/RexChenNi/Survival-Game.git
+    git clone https://github.com/RexChenNi/Group_30_Island_Survival.git
   3. Use SFTP to verify that the repository has been successfully cloned into your directory
   4. Change to the repository directory by entering
 
-    cd Survival-Game
+    cd Group_30_Island_Survival
   5. Compile the program by entering the command:
 
     make
