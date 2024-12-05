@@ -662,7 +662,7 @@ void Game_setting::craftItem() {
     cout << "| 5. Upgrade Shelter| Wood-10, Metal-6     |" << endl;
     cout << "| 6. Fur Clothing   | Leather-10           |" << endl;
     cout << "| 7. Boat           | Wood-35, Metal-20    |" << endl;
-
+    // choice 8 only enables when the Gun&bullet being explored in the island and stored in the bag map
     if (check_gun_bullet_blueprint()) {
         cout << "| 8. Gun&bullet     | Metal-15             |" << endl;
     }
