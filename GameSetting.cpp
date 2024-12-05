@@ -1094,6 +1094,7 @@ bool Game_setting::check_armor_blueprint() {
 }
 
 void Game_setting::openFile() {
+    // Open the survival file, which recodes all steps the player did in this game
     outFile.open("Survival Log");
     if (!outFile) {
         cerr << "Error opening file!" << endl;
