@@ -251,7 +251,7 @@ void Game_setting::perform_action() {
     cout << "+-------------------------------+" << endl;
     cout << "" << endl;
     appendToFile("\n");
-    if (HP <= 0) {
+    if (HP <= 0) {//essentially lost the game
         cout << "You didn't survive the night. Game Over!" << endl;
         cout << "We have a Survival Log for you.Do you want to read it? [Y/N]" << endl;
         appendToFile("You died");
