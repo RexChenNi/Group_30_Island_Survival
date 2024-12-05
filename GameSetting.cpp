@@ -1084,6 +1084,8 @@ bool Game_setting::check_signal_flare_blueprint() {
 }
 
 bool Game_setting::check_armor_blueprint() {
+    // Check if players have an armor blueprint, which decides if it can craft an item.
+    // return true or false
     bool has_armor = false;
     if (bag["armor blueprint"] > 0) {
         has_armor = true;
@@ -1099,6 +1101,7 @@ void Game_setting::openFile() {
 }
 
 void Game_setting::writeFile(string data) {
+    // Input a sting that records a new step in the survival game
     if (outFile.is_open()) {
         outFile << data << endl;
     }
