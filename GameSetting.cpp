@@ -357,7 +357,7 @@ void Game_setting::exploreIsland() {
         appendToFile("You died");
         char read;
         cin >> read;
-        if (tolower(read) == 'y') readFile();
+        if (tolower(read) == 'y') readFile(); //print survival log for player
         if (tolower(read) == 'n') exit(0);
         exit(0); // End the game
     }
