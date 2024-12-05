@@ -261,7 +261,7 @@ void Game_setting::perform_action() {
         if (tolower(read) == 'n') exit(0);
         exit(0);
     }
-    weather = weather_ran();
+    weather = weather_ran();//decide weather of current day
     start_of_day();
     perform_action(); // Start the next day's actions
 
