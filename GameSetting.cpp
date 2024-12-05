@@ -1,5 +1,271 @@
+#include "GameSetting.h"
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <fstream>
+#include <iomanip>
+
+using namespace std;
+
+struct Node {
+    string name;
+    Node* next;
+};
+
+void Game_setting::initialize_game() { // Correctly initializing member variables
+    day = 1;//initial number of day
+    HP = 100;//initial hp        
+    Hunger = 100;//initial hunger level
+    Mental = 100;//initial mental level
+    weather = "sunny"; // Default weather
+    openFile();
+    writeFile("This Survival Log records your actions in each day\n");
+    cout << "Game initialized!" << endl;
+    cout << "Cooking is allowed only when you have crafted campfire and shelter is key to survive the night!!!" << endl;
+}
+
+void Game_setting::start_of_day() { // starting the first day in the game
+    step_remains = 4;
+    appendToFile("Day " + to_string(day) + ": Today's weather is " + weather + "\n");
+    cout << "Good morning! It's your " << day << " day on the island. The weather today is " << weather << "." << endl;
+    cout << "You have " << step_remains << " actions available today.\n";
+}
+pair<char, char> Game_setting::selection_menu() { 
+    char choice;
+    char ready_to_escape = 'N'; // Tracks escape readiness
+
+    // Print selection menu for action
+    cout << "+------------------------------+" << endl;
+    cout << "| What do you want to do next: |" << endl;
+    cout << "+------------------------------+" << endl;
+    cout << "| [1] Exploring the island     |" << endl;
+    cout << "| [2] Eating                   |" << endl;
+    cout << "| [3] Crafting                 |" << endl;
+    cout << "| [4] Resting                  |" << endl;
+    cout << "| [5] Hunting                  |" << endl;
 
 
+    // Conditionally add "Cooking" option
+    if (bag.find("campfire") != bag.end()) {
+        cout << "| [6] Cooking                  |" << endl;
+    }
+
+    // Conditionally add "Escape" option
+    if (bag.find("signal flare") != bag.end() || bag.find("boat") != bag.end()) {
+        cout << "| [7] Attempt to escape        |" << endl;
+        ready_to_escape = 'Y'; // Ready to escape
+    }
+
+    cout << "+------------------------------+" << endl;
+    cout << "Please enter your choice: "; //read action choice of player
+    cin >> choice;
+    cout << endl;
+
+    return { choice, ready_to_escape }; // Return both choice and escape readiness
+}
+
+void Game_setting::perform_action() {
+    while (step_remains > 0) {
+        auto selection = selection_menu(); 
+        char choice = selection.first;
+        char ready_to_escape = selection.second;
+
+        switch (choice) {
+        case '1': //exploring the island
+            appendToFile("Step " + to_string(5 - step_remains) + " Exploring Island: \n");
+            exploreIsland();
+            step_remains--;
+            if (weather == "extreme rainfall") {
+                HP -= 20;
+                HP -= check_health() * 20;
+                Hunger -= 30;
+                Mental -= 5;
+                Hunger = (max(Hunger, 0));
+                Mental = (max(Mental, 0));
+            }
+            else {
+                HP -= check_health() * 20;
+                Hunger -= deduction().first;
+                Mental -= deduction().second;
+                Hunger = (max(Hunger, 0));
+                Mental = (max(Mental, 0));
+            }
+            cout << "+-------------------------------+" << endl;
+            cout << "|   Current Stats               |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "| HP:     " << setw(3) << HP << " / 100             |" << endl;
+            cout << "| Hunger: " << setw(3) << Hunger << " / 100             |" << endl;
+            cout << "| Mental: " << setw(3) << Mental << " / 100             |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "" << endl;
+            break;
+        case '2'://eating
+            print_bag();
+            eatFood();
+            cout << "+-------------------------------+" << endl;
+            cout << "|   Current Stats               |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "| HP:     " << setw(3) << HP << " / 100             |" << endl;
+            cout << "| Hunger: " << setw(3) << Hunger << " / 100             |" << endl;
+            cout << "| Mental: " << setw(3) << Mental << " / 100             |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "" << endl;
+            break;
+        case '3'://crafting
+            print_bag();
+            appendToFile("Step " + to_string(5 - step_remains) + " Crafting Items: ");
+            craftItem();
+            step_remains--;
+            HP -= check_health() * 20;
+            Hunger -= deduction().first;
+            Mental -= deduction().second;
+            if (Hunger <= 0)  Hunger = (max(Hunger, 0));
+            else Hunger = min(Hunger, 100);
+            if (Mental <= 0)  Mental = (max(Mental, 0));
+            else Mental = min(Mental, 100);
+            cout << "+-------------------------------+" << endl;
+            cout << "|   Current Stats               |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "| HP:     " << setw(3) << HP << " / 100             |" << endl;
+            cout << "| Hunger: " << setw(3) << Hunger << " / 100             |" << endl;
+            cout << "| Mental: " << setw(3) << Mental << " / 100             |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "" << endl;
+            break;
+        case '4'://resting
+            rest();
+            appendToFile("Step " + to_string(5 - step_remains) + " Resting: You had a good rest\n");
+            step_remains--;
+            cout << "+-------------------------------+" << endl;
+            cout << "|   Current Stats               |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "| HP:     " << setw(3) << HP << " / 100             |" << endl;
+            cout << "| Hunger: " << setw(3) << Hunger << " / 100             |" << endl;
+            cout << "| Mental: " << setw(3) << Mental << " / 100             |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "" << endl;
+            break;
+        case '5'://hunting
+            appendToFile("Step " + to_string(5 - step_remains) + " Hunting: ");
+            hunting();
+            step_remains--;
+            HP -= check_health() * 20;
+            Hunger -= deduction().first;
+            Mental -= deduction().second;
+            if (Hunger <= 0)  Hunger = (max(Hunger, 0));
+            else Hunger = min(Hunger, 100);
+            if (Mental <= 0)  Mental = (max(Mental, 0));
+            else Mental = min(Mental, 100);
+            cout << "+-------------------------------+" << endl;
+            cout << "|   Current Stats               |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "| HP:     " << setw(3) << HP << " / 100             |" << endl;
+            cout << "| Hunger: " << setw(3) << Hunger << " / 100             |" << endl;
+            cout << "| Mental: " << setw(3) << Mental << " / 100             |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "" << endl;
+            break;
+        case '6'://cooking food
+            print_bag();
+            appendToFile("Step " + to_string(5 - step_remains) + " Cooking: ");
+            if (bag.find("campfire") != bag.end()) {
+                cookFood();
+                step_remains--;
+            }
+            else {
+                appendToFile("Cooking is not available without a campfire!\n");
+                cout << "Cooking is not available without a campfire!" << endl;
+            }
+            HP -= check_health() * 20;
+            Hunger -= deduction().first;
+            Mental -= deduction().second;
+            if (Hunger <= 0)  Hunger = (max(Hunger, 0));
+            else Hunger = min(Hunger, 100);
+            if (Mental <= 0)  Mental = (max(Mental, 0));
+            else Mental = min(Mental, 100);
+            cout << "+-------------------------------+" << endl;
+            cout << "|   Current Stats               |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "| HP:     " << setw(3) << HP << " / 100             |" << endl;
+            cout << "| Hunger: " << setw(3) << Hunger << " / 100             |" << endl;
+            cout << "| Mental: " << setw(3) << Mental << " / 100             |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "" << endl;
+            break;
+        case '7'://attempt escaping
+            if (ready_to_escape == 'Y') {
+                appendToFile("Step " + to_string(5 - step_remains) + " Attempt to escape: ");
+                attempt_escape();
+                HP -= check_health() * 20;
+                Hunger -= deduction().first;
+                Mental -= deduction().second;
+                step_remains--;
+            }
+            else {
+                cout << "You are not ready to escape yet!" << endl;
+            }
+            cout << "+-------------------------------+" << endl;
+            cout << "|   Current Stats               |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "| HP:     " << setw(3) << HP << " / 100             |" << endl;
+            cout << "| Hunger: " << setw(3) << Hunger << " / 100             |" << endl;
+            cout << "| Mental: " << setw(3) << Mental << " / 100             |" << endl;
+            cout << "+-------------------------------+" << endl;
+            cout << "" << endl;
+            break;
+        default:
+            cout << "Invalid input! Please select a valid option." << endl;
+            break;
+        }
+        print_bag();
+        if (HP <= 0) {
+            cout << "You have succumbed to your injuries. Game Over!" << endl;
+            cout << "We have a Survival Log for you.Do you want to read it? [Y/N]" << endl;
+            appendToFile("You died");
+            char read;
+            cin >> read;
+            if (tolower(read) == 'y') readFile();
+            if (tolower(read) == 'n') exit(0);
+            exit(0); // End the game
+        }
+        if (step_remains > 0) {
+            cout << "You have " << step_remains << " steps remaining today.\n";
+        }
+        else {
+            cout << "You have no steps remaining for today.\n";
+        }
+    }
+    day++;
+    cout << "The day has ended. Preparing for the next day...\n";
+    cout << "-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+" << '\n';
+    cout << "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-" << '\n';
+    cout << "-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+" << '\n';
+    cout << "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-" << '\n';
+    night_event();
+    cout << "+-------------------------------+" << endl;
+    cout << "|   Current Stats               |" << endl;
+    cout << "+-------------------------------+" << endl;
+    cout << "| HP:     " << setw(3) << HP << " / 100             |" << endl;
+    cout << "| Hunger: " << setw(3) << Hunger << " / 100             |" << endl;
+    cout << "| Mental: " << setw(3) << Mental << " / 100             |" << endl;
+    cout << "+-------------------------------+" << endl;
+    cout << "" << endl;
+    appendToFile("\n");
+    if (HP <= 0) {//essentially lost the game
+        cout << "You didn't survive the night. Game Over!" << endl;
+        cout << "We have a Survival Log for you.Do you want to read it? [Y/N]" << endl;
+        appendToFile("You died");
+        char read;
+        cin >> read;
+        if (tolower(read) == 'y') readFile(); // print survival log for player
+        if (tolower(read) == 'n') exit(0); // exit the game
+        exit(0);
+    }
+    weather = weather_ran();//decide weather of current day
+    start_of_day();
+    perform_action(); // Start the next day's actions
+
+}
 
 void Game_setting::exploreIsland() {
     srand(time(0)); // Seed the random number generator
