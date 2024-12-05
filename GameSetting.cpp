@@ -57,7 +57,7 @@ pair<char, char> Game_setting::selection_menu() {
     }
 
     cout << "+------------------------------+" << endl;
-    cout << "Please enter your choice: ";
+    cout << "Please enter your choice: "; //read action choice of player
     cin >> choice;
     cout << endl;
 
