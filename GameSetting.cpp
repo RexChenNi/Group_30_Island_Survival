@@ -1064,6 +1064,8 @@ int Game_setting::check_health() {
 }
 
 bool Game_setting::check_gun_bullet_blueprint() {
+    // Check if players have a gun bullet blueprint, which decides if it can craft the weapon. 
+    // return true or false
     bool has_gun_bullet = false;
     if (bag["gun&bullet blueprint"] > 0) {
         has_gun_bullet = true;
