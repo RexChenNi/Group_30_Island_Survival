@@ -532,7 +532,7 @@ void Game_setting::eatFood() {
     int choice;
     cout << "What would you like to eat? Enter your choice: ";
     cin >> choice;
-
+    // choice in numerical numbers
     switch (choice) {
     case 1: // Fruits
         if (bag["fruit"] > 0) {
