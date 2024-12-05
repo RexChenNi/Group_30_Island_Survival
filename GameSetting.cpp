@@ -495,7 +495,7 @@ void Game_setting::cookFood() {
             cout << "You cooked " << dish << "! Remaining dishes to cook: " << (2 - dishesCooked) << endl;
         }
     }
-
+    // check if the player has the necessary resources
     if (dishesCooked == 0) {
         cout << "You didn't cook anything today." << endl;
     }
