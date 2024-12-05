@@ -343,6 +343,7 @@ void Game_setting::exploreIsland() {
             }
         }
         else {
+            // choose not to enter the cave 
             cout << "You decided not to take the risk and left the cave untouched." << endl;
         }
         cout << "Your current HP: " << HP << endl;
