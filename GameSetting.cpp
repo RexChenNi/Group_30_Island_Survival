@@ -407,8 +407,9 @@ void Game_setting::cookFood() {
         cout << "!!! You need a campfire to cook food. Craft one first!!!" << '\n' << endl;
         // Restore the player's remaining step since cooking is unavailable.
         step_remains++;
+      // Call the crafting function to allow the player to create a campfire.
         craftItem();
-        return;
+        return; // Exit the function as cooking cannot proceed without a campfire.
     }
 
     // Display the cooking menu
