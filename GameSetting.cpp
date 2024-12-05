@@ -1074,6 +1074,8 @@ bool Game_setting::check_gun_bullet_blueprint() {
 }
 
 bool Game_setting::check_signal_flare_blueprint() {
+    // Check if players have a signal flare blueprint, which decides if it can craft signal flare to escape
+    // return true or false
     bool has_signal = false;
     if (bag["signal flare blueprint"] > 0) {
         has_signal = true;
