@@ -1070,4 +1070,107 @@ bool Game_setting::check_armor_blueprint() {
     return has_armor;
 }
 
+void Game_setting::openFile() {
+    outFile.open("Survival Log");
+    if (!outFile) {
+        cerr << "Error opening file!" << endl;
+    }
+}
+
+void Game_setting::writeFile(string data) {
+    if (outFile.is_open()) {
+        outFile << data << endl;
+    }
+    else {
+        cerr << "File is not open!" << endl;
+    }
+}
+
+void Game_setting::appendToFile(string text) {
+    // Open the file in append mode
+    ofstream outFile("Survival Log", ios::app);
+
+    // Check if the file opened successfully
+    if (!outFile) {
+        cerr << "Error opening file for appending!" << endl;
+        return;
+    }
+
+    // Write the text to the file
+    outFile << text; // Add a newline after the text
+
+    // Close the file
+    outFile.close();
+}
+
+void Game_setting::closeFile() {
+    if (outFile.is_open()) {
+        outFile.close();
+    }
+}
+
+void Game_setting::readFile() {
+    ifstream inFile("Survival Log"); // Open the file
+
+    // Check if the file opened successfully
+    if (!inFile) {
+        cerr << "Error opening file: " << "Survival Log" << endl;
+        return;
+    }
+
+    string line;
+    // Read the file line by line
+    while (getline(inFile, line)) {
+        cout << line << endl; // Print each line to the console
+    }
+
+    // Close the file
+    inFile.close();
+}
+
+ void Game_setting::delete_list(Node*& head) {
+    Node* current = head;
+    Node* nextNode;
+
+    while (current != nullptr) {
+        nextNode = current->next;
+        delete current;
+        current = nextNode;
+    }
+
+    head = nullptr;
+}
+
+void Game_setting::blueprint_list() {
+    Node* head = nullptr;
+
+    if (check_gun_bullet_blueprint()) {
+        Node* P = new Node;
+        P->name = "gun bullet blueprint";
+        P->next = head;
+        head = P;
+    }
+
+    if (check_signal_flare_blueprint()) {
+        Node* P = new Node;
+        P->name = "signal flare blueprint";
+        P->next = head;
+        head = P;
+    }
+
+    if (check_armor_blueprint()) {
+        Node* P = new Node;
+        P->name = "armor blueprint";
+        P->next = head;
+        head = P;
+    }
+
+    Node* current = head;
+    while (current != NULL) {
+        cout << current->name << endl;
+        current = current->next;
+    }
+
+    delete_list(head);
+}
 
