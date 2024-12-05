@@ -1,4 +1,4 @@
-#COMP2113 Group Project - Island Survival
+#COMP2113 Group Project - Group 30 - Island Survival
 
 Member Identification
   1. Chen Ni 3036267800
