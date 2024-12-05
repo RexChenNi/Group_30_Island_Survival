@@ -258,7 +258,7 @@ void Game_setting::perform_action() {
         char read;
         cin >> read;
         if (tolower(read) == 'y') readFile(); // print survival log for player
-        if (tolower(read) == 'n') exit(0);
+        if (tolower(read) == 'n') exit(0); // exit the game
         exit(0);
     }
     weather = weather_ran();//decide weather of current day
