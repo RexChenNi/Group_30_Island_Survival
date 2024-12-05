@@ -1158,6 +1158,7 @@ void Game_setting::readFile() {
 }
 
  void Game_setting::delete_list(Node*& head) {
+    // Clean up the linked list and create a new one each time checking the blueprint list. 
     Node* current = head;
     Node* nextNode;
 
