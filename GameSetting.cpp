@@ -24,7 +24,7 @@ void Game_setting::initialize_game() { // Correctly initializing member variable
     cout << "Cooking is allowed only when you have crafted campfire and shelter is key to survive the night!!!" << endl;
 }
 
-void Game_setting::start_of_day() {
+void Game_setting::start_of_day() { // starting the first day in the game
     step_remains = 4;
     appendToFile("Day " + to_string(day) + ": Today's weather is " + weather + "\n");
     cout << "Good morning! It's your " << day << " day on the island. The weather today is " << weather << "." << endl;
