@@ -874,7 +874,7 @@ void Game_setting::poor_sleeping_quality() {
 void Game_setting::night_event() {
     // Describe what happens during the nighttime with a certain probability of wild animal attack and poor sleeping quality. 
     // Input the type of shelter the player has, which reduces the probability of being attacked
-    // 
+    // Output the amount of HP being reduced during each night. 
     int night_ran;
     srand(time(0));
     night_ran = rand() % 101;
