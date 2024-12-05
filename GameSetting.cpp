@@ -866,6 +866,7 @@ void Game_setting::wildAnimalAttack() {
 }
 
 void Game_setting::poor_sleeping_quality() {
+    // Calculate and reduce the amount of change in HP when the player has poor sleeping quality. 
     cout << "You have had a poor sleeping quality at night and your mental bar droped by 15!" << endl;
     Mental -= 15;
 }
